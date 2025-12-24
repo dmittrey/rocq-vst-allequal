@@ -35,3 +35,8 @@
     - API спецификация
     - Доказательство корректности отдельных функций(функция на файл)
 *)
+
+Require Import VST.floyd.proofauto.
+Require Import allequal.
+#[export] Instance CompSpecs : compspecs. make_compspecs prog. Defined.
+Definition Vprog : varspecs. mk_varspecs prog. Defined.
