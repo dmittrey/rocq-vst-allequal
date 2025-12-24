@@ -10,6 +10,6 @@ generate-ast:
 	clightgen -normalize allequal.c
 
 clean:
-	rm -f *.vo *.vos *.vok *.glob *.cache
+	rm -f *.vos *.vok *.glob *.cache
 	rm -rf .coq-native .lia.cache
 	rm -f .*aux .*d *.d
