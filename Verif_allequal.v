@@ -36,7 +36,9 @@
     - Доказательство корректности отдельных функций(функция на файл)
 *)
 
-Require Import VST.floyd.proofauto.
-Require Import allequal.
+(** *** Standard boilerplate *)
+
+Require Import VST.floyd.proofauto. (* Verifiable C and its Floyd proof-automation library *)
+Require Import allequal. (* AST *)
 #[export] Instance CompSpecs : compspecs. make_compspecs prog. Defined.
 Definition Vprog : varspecs. mk_varspecs prog. Defined.
