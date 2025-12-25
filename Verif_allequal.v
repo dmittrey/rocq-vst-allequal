@@ -45,8 +45,22 @@ Definition Vprog : varspecs. mk_varspecs prog. Defined.
 
 (** *** Functional model *)
 
-Definition all_equal (contents : list Z) : Prop.
-Admitted.
+From Coq Require Import ZArith List.
+Import ListNotations.
+Open Scope Z_scope.
+
+Fixpoint all_equal_with_Z (s : Z) (xs : list Z) : Z :=
+  match xs with
+  | [] => 0
+  | x :: rest =>
+      if Z.eqb x s then all_equal_with_Z s rest else 1
+  end.
+
+Definition all_equal (contents : list Z) : Z :=
+  match contents with
+  | [] => 0
+  | s :: rest => all_equal_with_Z s rest
+  end.
 
 (** ** API spec *)
 
