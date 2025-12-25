@@ -61,11 +61,7 @@ DECLARE _allequal
    SEP (data_at sh (tarray tuint size) (map Vint (map Int.repr contents)) a)
  POST [ tuint ]
    EX r: Z,
-   PROP (r = 0 \/ r = 1;
-         (r = 0 -> all_equal contents);
-         (r = 1 -> exists j, 0 <= j < Zlength contents /\
-                            Znth j contents <> Znth 0 contents))
-   RETURN (Vint (Int.repr r))
+   PROP () RETURN (Vint (Int.repr (all_equal contents)))
    SEP (data_at sh (tarray tuint size) (map Vint (map Int.repr contents)) a).
 
 (** *** main() spec *)
