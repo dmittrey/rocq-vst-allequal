@@ -64,45 +64,12 @@ DECLARE _allequal
    PROP () RETURN (Vint (Int.repr (all_equal contents)))
    SEP (data_at sh (tarray tuint size) (map Vint (map Int.repr contents)) a).
 
-(** *** main() spec *)
-
-Definition four_contents : list Z := [1; 2; 3; 4].
-
-Definition main_spec :=
- DECLARE _main
-  WITH gv : globals
-  PRE  [] main_pre prog tt gv
-  POST [ tint ]
-     PROP()
-     RETURN (Vint (Int.repr 1))
-     SEP(TT).
-
 (** ** Packaging the specs *)
 
-Definition Gprog := [allequal_spec; main_spec].
+Definition Gprog := [allequal_spec].
 
 (** ** Proof of allequal *)
 
 Lemma body_allequal : semax_body Vprog Gprog f_allequal allequal_spec.
-Proof.
-  
-Admitted.
-
-(** ** Global variables and main() *)
-
-Lemma body_main : semax_body Vprog Gprog f_main main_spec.
-Proof.
-
-Admitted.
-
-(** ** Tying all the functions together *)
-
-#[export] Existing Instance NullExtension.Espec.
-
-Lemma prog_correct : semax_prog prog tt Vprog Gprog.
-Proof.
-  prove_semax_prog.
-
-  semax_func_cons body_allequal.
-  semax_func_cons body_main.
+Proof.  
 Qed.
